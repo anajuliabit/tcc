@@ -100,10 +100,11 @@ A EIP-4337, também conhecida como Account Abstraction (AA), introduz uma inova�
 convencional de contas no Ethereum, sugerindo a utilização de smart contracts no lugar das
 tradicionais EOAs. Essa proposta tem o potencial de abrir novos casos de uso na plataforma.
 
-Ao proporcionar maior flexibilidade no processo de validação de transações, a Account Abstraction
-(AA) desencadeia uma série de novas capacidades, destacando-se a possibilidade de autorização
-personalizada sem a obrigatoriedade do uso de ECDSA, assim como nas EOAs. Isso permite a adaptação
-da lógica de autorização de acordo com necessidades específicas \cite{1}. Esse caso de uso específico que será o foco central deste artigo. Através da EIP-4337, podemos
+Ao proporcionar maior flexibilidade no processo de validação de transações, a Account Abstraction (AA) desencadeia uma série de novas capacidades, destacando-se a possibilidade de autorização personalizada sem a obrigatoriedade do uso de ECDSA, assim como nas EOAs. Isso permite a adaptação da lógica de autorização de acordo com necessidades específicas (1).
+
+
+
+Esse caso de uso específico que será o foco central deste artigo. Através da EIP-4337, podemos
 estabelecer regras de validação que não dependem necessariamente da assinatura do proprietário da
 conta, o que representa uma inovação para as blockchains. Até então, a autorização de transações
 era exclusivamente baseada na atomicidade das assinaturas criptográficas, exigindo que a aprovação
@@ -116,12 +117,12 @@ não foram fornecidos detalhes técnicos nem foi publicado o código fonte da im
 artigo, exploraremos a publicação da Visa e apresentaremos uma proposta de implementação em
 Solidity que possibilite a execução de pagamentos automáticos programáveis. A estrutura deste
 artigo está organizada da seguinte maneira: na seção de revisão bibliográfica, iniciaremos com uma
-descrição da linguagem de programação Solidity e da \textit{Ethereum Virtual Machine} (EVM),
-seguida por uma explicação técnica detalhada da EIP-4337. Em seguida, na seção de desenvolvimento,
-realizaremos uma análise minuciosa do artigo da Visa e apresentaremos uma proposta de implementação
-em Solidity para viabilizar pagamentos automáticos programáveis em carteiras autogerenciadas. Por
-fim, na seção de conclusão, concluiremos o artigo com uma discussão sobre as implicações e
-oportunidades que se apresentam para o emergente campo de pagamentos.
+descrição da linguagem de programação Solidity e da \textit{Ethereum Virtual Machine} (EVM), seguida por uma
+explicação técnica detalhada da EIP-4337. Em seguida, na seção de desenvolvimento, realizaremos uma
+análise minuciosa do artigo da Visa e apresentaremos uma proposta de implementação em Solidity para
+viabilizar pagamentos automáticos programáveis em carteiras autogerenciadas. Por fim, na seção de
+conclusão, concluiremos o artigo com uma discussão sobre as implicações e oportunidades que se
+apresentam para o emergente campo de pagamentos.
 \section{Revisão Bibliográfica}\label{sec:revisao}
 
 \subsection{Ethereum Virtual Machine (EVM)}
