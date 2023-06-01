@@ -2,8 +2,6 @@
 
 \usepackage{sbc-template} 
 
-\usepackage{newtxtext}
-
 \usepackage{graphicx,url}
 
 \usepackage[brazil]{babel}
@@ -32,36 +30,62 @@
 \end{abstract}
 
 \begin{resumo}
-  (provisório) À medida que a tecnologia blockchain continua a ganhar adoção, percebe-se um crescimento na demanda por
-  funcionalidades que viabilizem sua aplicação em situações reais. No âmbito deste artigo técnico, nos
-  inspiramos na recente publicação da Visa como premissa para a exploração da implementação de pagamentos
+  (provisório) À medida que a tecnologia blockchain continua a ganhar adoção, percebe-se um crescimento na demanda por funcionalidades que viabilizem sua aplicação em situações reais. No âmbito deste artigo técnico, nos inspiramos na recente publicação da Visa como premissa para a exploração da implementação de pagamentos
   programáveis automatizados em carteiras de auto custódia. Adentramos na esfera do conceito de Abstração de
   Contas e propomos uma execução codificada em Solidity com o propósito de habilitar pagamentos recorrentes
-  originados diretamente de carteiras sob controle do usuário. Por meio desta sondagem, nosso intuito
-  primordial é fornecer perspectivas elucidativas e orientações pragmáticas relativas à implementação de
+  originados diretamente de carteiras sob controle do usuário. Por meio desta sondagem, nosso intuito   primordial é fornecer perspectivas elucidativas e orientações pragmáticas relativas à implementação de
   pagamentos automáticos no contexto das finanças descentralizadas.
 \end{resumo}
+\comment{RESUMO}{Sim, nem precisa fazer nada aqui por enquanto. Só vamos ver mais pro final.}
 
 \section{Introdução}
+A tecnologia blockchain, primeiramente introduzida por Satoshi Nakamoto em 2008, é identificada
+como uma megatendência computacional capaz de revolucionar múltiplos setores industriais\cite{1}.
+As características distintas de segurança, transparência e rastreabilidade inerentes à blockchain
+têm incentivado uma ampla gama de setores a explorar seu uso na reestruturação de suas operações
+fundamentais. A aplicabilidade dessa tecnologia ultrapassa o domínio das criptomoedas, abarcando
+setores como pagamentos, gerenciamento de identidade, saúde, eleições governamentais e
+outros\cite{2}.
 
-Primeiramente introduzida por Satoshi Nakamoto em 2008, a inovação da tecnologia blockchain tem
-sido reconhecida como uma das "megatendências" computacionais com capacidade para reestruturar a
-paisagem global nas próximas décadas \cite{WEF2015}. A singularidade inerente à tecnologia
-blockchain, englobando aspectos de segurança, transparência e rastreabilidade, tem estimulado uma
-gama diversificada de setores industriais a explorarem sua utilização na reformulação de suas
-operações centrais. A abrangência da sua aplicabilidade estende-se para além do domínio das
-criptomoedas, permeando áreas como a gestão de identidade, saúde, eleições governamentais, entre
-outros.\cite{PuLam2021}
+Com a divulgação do \textit{whitepaper} Ethereum em 2014, um marco significativo foi estabelecido
+no desenvolvimento da tecnologia blockchain\cite{3}. Distinto do Bitcoin, que foi originalmente
+idealizado como um sistema de pagamento digital, Ethereum introduziu uma funcionalidade inovadora
+na tecnologia blockchain: os contratos inteligentes (\textit{smart contracts}). Esta inovação foi
+concebida para se valer dos atributos da blockchain, implementando automaticamente os termos
+acordados entre duas partes ao formalizar um contrato em um ambiente desprovido de confiança, uma
+característica que levou à denominação de \textit{smart contract} para esse código de
+software\cite{4}. No entanto, apesar do seu grande potencial, a complexidade associada à aplicação
+prática da tecnologia é um dos obstáculos para a sua adoção em larga escala\cite{11}. Para utilizar
+de forma segura os aplicativos descentralizados (DApps) - aplicativos que substituem o sistema de
+back-end por contratos inteligentes, os usuários precisam possuir conhecimentos técnicos em
+criptografia para manter sua chave privada segura\cite{6}.
 
-Com a publicação do \textit{whitepaper} do Ethereum em 2014\cite{Buterin2014}, um marco
-significativo foi estabelecido no desenvolvimento da tecnologia blockchain. Em contraste com o
-Bitcoin, que foi inicialmente concebido como um sistema de pagamento digital, o Ethereum introduziu
-uma nova característica à tecnologia blockchain: os contratos inteligentes (\textit{smart
-  contracts}). Essa inovação foi projetada originalmente para se beneficiar dos atributos da
-blockchain, implementando automaticamente os termos acordados entre duas partes ao formalizar um
-contrato num ambiente desprovido de confiança, uma característica que conduziu à denominação de
-\textit{smart contract} para esse código de software\cite{Pinna2019}.
+Em face deste desafio, o presente estudo pretende explorar tecnicamente a ERC-4337\cite{5}, também
+conhecida como \textit{Account Abstraction (AA)}, para a execução de pagamentos automáticos em
+carteiras auto-custodiadas. A ERC-4337 apresenta uma inovação substancial, proporcionando maior
+flexibilidade no processo de validação de transações e permitindo autorizações personalizadas, que
+não necessitam necessariamente de uma assinatura criptográfica. Esta capacidade tem o potencial de
+aprimorar consideravelmente a experiência do usuário no ecossistema Ethereum\cite{12}. Esta
+pesquisa procurará entender este recurso em profundidade e propor uma implementação prática para
+habilitar pagamentos automáticos em carteiras auto-custodiadas. O objetivo é oferecer uma visão
+esclarecedora e orientações pragmáticas relacionadas à implementação de pagamentos que possam
+servir como referência para futuras aplicações. A pesquisa foi inspirada por um estudo conduzido
+pela Visa, empresa líder em soluções de pagamento. A Visa propôs a ideia de realizar pagamentos
+automáticos na blockchain sem a necessidade de revelar chaves privadas utilizando os benefícios da
+ERC-4337\cite{9}. No entanto, os detalhes técnicos ou o código-fonte para tal implementação não
+foram disponibilizados.
 
+A estrutura deste artigo é a seguinte: após esta introdução, procederemos com uma revisão
+bibliográfica detalhada, começando por um overview do Ethereum, abordando elementos da linguagem de
+programação Solidity, da Ethereum Virtual Machine (EVM) e da ERC-4337. Na seção de desenvolvimento,
+analisaremos o estudo da Visa e proporemos uma implementação em Solidity para habilitar pagamentos
+automáticos programáveis em carteiras autogerenciadas. Concluiremos com uma discussão sobre as
+implicações e possíveis aplicações desta nova funcionalidade nas blockchains, revelando
+oportunidades inovadoras no campo dos pagamentos.
+
+\section{Revisão Bibliográfica}\label{sec:revisao}
+
+\subsection{Ethereum}
 A compreensão clara das diferenças entre os dois tipos de contas no Ethereum é fundamental para um
 entendimento completo do funcionamento dos contrato inteligentes. No Ethereum, existem
 essencialmente duas categorias distintas de contas: as contas de propriedade externa
@@ -71,17 +95,17 @@ possuem uma chave privada que concede controle sobre o acesso aos fundos ou cont
 Em contraste, as contas de contrato apresentam características distintas das EOAs. Uma conta de
 contrato abriga o código de um contrato inteligente, uma funcionalidade ausente em uma simples EOA.
 Além disso, uma conta de contrato não possui uma chave privada. Em vez disso, é controlada pela
-lógica incorporada no código do contrato inteligente \cite{Antonopoulos2018}.
+lógica incorporada no código do contrato inteligente \cite{6}.
 
 As contas de contrato possuem endereços, semelhantes às EOAs, e também são capazes de enviar e
 receber Ether. No entanto, quando uma transação é destinada a um endereço de contrato, ocorre a
 execução desse contrato na \textit{Ethereum Virtual Machine} (EVM), utilizando a transação e os
 dados da transação como entrada. Além do Ether, as transações podem conter dados que especificam
 qual função específica do contrato deve ser ativada e quais parâmetros devem ser fornecidos a essa
-função \cite{Antonopoulos2018}. Enquanto as EOAs permitem que os usuários tenham controle direto
-sobre seus fundos e contratos, utilizando suas chaves privadas para autorizar transações, as contas
-de contrato possibilitam a implementação de lógica programável e automatizada por meio do código do
-\textit {smart contract}.
+função \cite{6}. Enquanto as EOAs permitem que os usuários tenham controle direto sobre seus fundos
+e contratos, utilizando suas chaves privadas para autorizar transações, as contas de contrato
+possibilitam a implementação de lógica programável e automatizada por meio do código do \textit
+{smart contract}.
 
 Com a compreensão das diferenças entre contas de propriedade externa (EOAs) e contas de contrato,
 podemos agora explorar as aplicações descentralizadas (DApps) em maior detalhe. Essas aplicações
@@ -94,7 +118,7 @@ Para enfrentar os desafios intrínsecos mencionados, são realizados esforços c
 aprimorar e simplificar a experiência do usuário no ambiente do Ethereum. Como o Ethereum é uma
 rede descentralizada e de código aberto, a comunidade constantemente formula propostas de melhoria
 conhecidas como \textit{Ethereum Improvement Proposals} (EIPs). Uma proposta relevante para nossa
-discussão é a EIP-4337 \cite{Buterin2021}.
+discussão é a EIP-4337 \cite{5}.
 
 A EIP-4337, também conhecida como Account Abstraction (AA), introduz uma inovação radical no modelo
 convencional de contas no Ethereum, sugerindo a utilização de smart contracts no lugar das
@@ -103,33 +127,14 @@ tradicionais EOAs. Essa proposta tem o potencial de abrir novos casos de uso na 
 Ao proporcionar maior flexibilidade no processo de validação de transações, a Account Abstraction
 (AA) desencadeia uma série de novas capacidades, destacando-se a possibilidade de autorização
 personalizada sem a obrigatoriedade do uso de ECDSA, assim como nas EOAs. Isso permite a adaptação
-da lógica de autorização de acordo com necessidades específicas \cite{1}. Esse caso de uso específico que será o foco central deste artigo. Através da EIP-4337, podemos
-estabelecer regras de validação que não dependem necessariamente da assinatura do proprietário da
-conta, o que representa uma inovação para as blockchains. Até então, a autorização de transações
-era exclusivamente baseada na atomicidade das assinaturas criptográficas, exigindo que a aprovação
-ocorresse instantaneamente, sem a possibilidade de pré-aprovação.
-
-A Visa, renomada por suas soluções de pagamento, conduziu um estudo sobre a viabilidade de realizar
-autopagamentos na blockchain sem a necessidade de divulgar as chaves privadas, aproveitando as
-vantagens oferecidas pela EIP-4337. Apesar do artigo da Visa descrever a solução de forma geral,
-não foram fornecidos detalhes técnicos nem foi publicado o código fonte da implementação. Neste
-artigo, exploraremos a publicação da Visa e apresentaremos uma proposta de implementação em
-Solidity que possibilite a execução de pagamentos automáticos programáveis. A estrutura deste
-artigo está organizada da seguinte maneira: na seção de revisão bibliográfica, iniciaremos com uma
-descrição da linguagem de programação Solidity e da \textit{Ethereum Virtual Machine} (EVM),
-seguida por uma explicação técnica detalhada da EIP-4337. Em seguida, na seção de desenvolvimento,
-realizaremos uma análise minuciosa do artigo da Visa e apresentaremos uma proposta de implementação
-em Solidity para viabilizar pagamentos automáticos programáveis em carteiras autogerenciadas. Por
-fim, na seção de conclusão, concluiremos o artigo com uma discussão sobre as implicações e
-oportunidades que se apresentam para o emergente campo de pagamentos.
-\section{Revisão Bibliográfica}\label{sec:revisao}
-
-\subsection{Ethereum Virtual Machine (EVM)}
-
-\subsection{Solidity}
+da lógica de autorização de acordo com necessidades específicas \cite{1}. Esse caso de uso
+específico que será o foco central deste artigo. Através da EIP-4337, podemos estabelecer regras de
+validação que não dependem necessariamente da assinatura do proprietário da conta, o que representa
+uma inovação para as blockchains. Até então, a autorização de transações era exclusivamente baseada
+na atomicidade das assinaturas criptográficas, exigindo que a aprovação ocorresse instantaneamente,
+sem a possibilidade de pré-aprovação.
 
 \subsection{Account Abstraction}
-
 Account Abstraction é um conceito que vem sendo explorado para aumentar a flexibilidade e
 funcionalidade das contas na rede Ethereum.
 
@@ -141,8 +146,8 @@ programada para gerenciar transações de uma maneira específica ou para se def
 tipos de ataques.
 
 \section{Desenvolvimento}\label{sec:desenvolvimento}
-
 \subsection{Análise publicação da Visa}
+\comment{text}{O texto abaixo precisa de referência}
 Em sua recente contribuição para a expansão do campo de pagamentos automáticos programáveis em
 carteiras auto-custodiadas via blockchain, a Visa apresentou revelações significativas numa
 publicação técnica intitulada "Autopayments via Account Abstraction". As próximas linhas fornecem
@@ -188,12 +193,12 @@ Discussão dos benefícios e vantagens oferecidos pela solução proposta para p
 Exploração de casos de uso potenciais além de pagamentos recorrentes, como serviços de recuperação de conta de terceiros e gestão de ativos.
 
 \section{Conclusão}\label{sec:conclusao}
-
-Reflexão sobre a importância dos pagamentos programáveis e o potencial para inovações futuras no
-espaço blockchain. Pesquisa Futura e Considerações Identificação de possíveis áreas para futuras
-pesquisas e desenvolvimento na automatização de pagamentos em carteiras de auto-gestão. Discussão
-sobre possíveis desafios e considerações a serem tratados na implementação de pagamentos
-automáticos em escala.
+\comment{text}{Nem tente escrever conclusão ainda. Uma porque isso é só pra TCC II}
+\remove{Reflexão sobre a importância dos pagamentos programáveis e o potencial para inovações futuras no
+  espaço blockchain. Pesquisa Futura e Considerações Identificação de possíveis áreas para futuras
+  pesquisas e desenvolvimento na automatização de pagamentos em carteiras de auto-gestão. Discussão
+  sobre possíveis desafios e considerações a serem tratados na implementação de pagamentos
+  automáticos em escala.}
 
 \bibliographystyle{sbc}
 \bibliography{tcc}
