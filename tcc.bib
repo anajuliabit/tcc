@@ -22,6 +22,16 @@ eprint = {
     }
 }
 
+@misc{5,
+    author = {Vitalik Buterin and Yoav Weiss and Kristof Gazso and Namra Patel and Dror Tirosh and Shahaf Nacson and Tjaden Hess},
+    title = {ERC-4337: Account Abstraction Using Alt Mempool },
+    howpublished = {Ethereum Improvement Proposals},
+    year = {2021},
+    month = {September},
+    number = {4337},
+    url = {https://eips.ethereum.org/EIPS/eip-4337},
+}
+
 @book{6,
   author = {Andreas Antonopoulos and Gavin Wood},
   title = {Mastering Ethereum: Building Smart Contracts and DApps},
@@ -82,15 +92,7 @@ url="https://doi.org/10.1007/978-1-4842-2535-6_3"
   url = {https://usa.visa.com/solutions/crypto/auto-payments-for-self-custodial-wallets.html},
 }
 
-@misc{5,
-    author = {Vitalik Buterin and Yoav Weiss and Kristof Gazso and Namra Patel and Dror Tirosh and Shahaf Nacson and Tjaden Hess},
-    title = {ERC-4337: Account Abstraction Using Alt Mempool },
-    howpublished = {Ethereum Improvement Proposals},
-    year = {2021},
-    month = {September},
-    number = {4337},
-    url = {https://eips.ethereum.org/EIPS/eip-4337},
-}
+
 
 @Inbook{10,
 author="Yano, Makoto
@@ -120,9 +122,75 @@ url="https://doi.org/10.1007/978-981-15-3376-1_1"
 }
 
 @online{12,
-  author       = {Coyle, Kevin},
-  title        = {Account Abstraction: Use Cases, Technical Overview, and Security Considerations},
-  year         = {2023},
-  url          = {https://www.arbitraryexecution.com/blog/account-abstraction-overview},
-  urldate      = {2023-05-21}
+  title ={Account Abstraction: Use Cases, Technical Overview, and Security Considerations},
+  author={Coyle, Kevin},
+  year={2023},
+  url={https://www.arbitraryexecution.com/blog/account-abstraction-overview},
+  urldate={2023-05-21}
 }
+
+@inbook{13,
+  author={Hildenbrandt, Everett and Saxena, Manasvi and Rodrigues, Nishant and Zhu, Xiaoran and Daian, Philip and Guth, Dwight and Moore, Brandon and Park, Daejun and Zhang, Yi and Stefanescu, Andrei and Rosu, Grigore},
+  booktitle={2018 IEEE 31st Computer Security Foundations Symposium (CSF)}, 
+  title={KEVM: A Complete Formal Semantics of the Ethereum Virtual Machine}, 
+  year={2018},
+  volume={},
+  number={},
+  pages={204-217},
+  doi={10.1109/CSF.2018.00022}
+}
+
+@article{14, 
+    author={Toyoda, Kentaroh and Mathiopoulos, P. Takis and Sasase, Iwao and Ohtsuki, Tomoaki},  
+    journal={IEEE Access},
+    title={A Novel Blockchain-Based Product Ownership Management System (POMS) for Anti-Counterfeits in the Post Supply Chain},
+    year={2017},
+    volume={5},
+    number={},
+    pages={17465-17477},
+    doi={10.1109/ACCESS.2017.2720760}
+}
+
+@article{15,
+  title={Ethereum: A secure decentralised generalised transaction ledger},
+  author={Wood, Gavin and others},
+  journal={Ethereum project yellow paper},
+  volume={151},
+  number={2014},
+  pages={1--32},
+  year={2014}
+}
+
+
+@misc{16,
+  title = "Solidity Documentation",
+  author = "{Solidity contributors}",
+  howpublished = {\url{https://docs.soliditylang.org/en/v0.8.20/}},
+}
+
+@techreport{17,
+  author = "{National Institute of Standards and Technology}",
+  title = "Digital Signature Standard",
+  year = 2013,
+  url = "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-4.pdf",
+  institution = "National Institute of Standards and Technology",
+  number = "NIST.FIPS.186-4",
+}
+
+@inproceedings{18,
+author = {Oder, Tobias and P\"{o}ppelmann, Thomas and G\"{u}neysu, Tim},
+title = {Beyond ECDSA and RSA: Lattice-Based Digital Signatures on Constrained Devices},
+year = {2014},
+isbn = {9781450327305},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2593069.2593098},
+doi = {10.1145/2593069.2593098},
+abstract = {All currently deployed asymmetric cryptography is broken with the advent of powerful quantum computers. We thus have to consider alternative solutions for systems with long-term security requirements (e.g., for long-lasting vehicular and avionic communication infrastructures). In this work we present an efficient implementation of BLISS, a recently proposed, post-quantum secure, and formally analyzed novel lattice-based signature scheme. We show that we can achieve a significant performance of 35.3 and 6 ms for signing and verification, respectively, at a 128-bit security level on an ARM Cortex-M4F microcontroller. This shows that lattice-based cryptography can be efficiently deployed on today's hardware and provides security solutions for many use cases that can even withstand future threats.},
+booktitle = {Proceedings of the 51st Annual Design Automation Conference},
+pages = {1–6},
+numpages = {6},
+location = {San Francisco, CA, USA},
+series = {DAC '14}
+}
+
